@@ -79,7 +79,7 @@ function initializeSitemap() {
 
                                 user: {
                                     identities: {
-                                        phoneNumber: phone
+                                        phone: phone
                                     }
                                 }
                             });
@@ -130,7 +130,7 @@ function initializeSitemap() {
                                         user: {
 
                                             identities: {
-                                                phoneNumber: cleanedPhone
+                                                phone: cleanedPhone
                                             },
 
                                         }
@@ -446,7 +446,7 @@ function initializeSitemap() {
                                     user: {
 
                                         identities: {
-                                            phoneNumber: mobile,
+                                            phone: mobile,
                                         },
 
                                         attributes: {
@@ -569,7 +569,7 @@ function initializeSitemap() {
 
                                 user: {
                                     identities: {
-                                        phoneNumber: mobileNumber
+                                        phone: mobileNumber
                                     },
                                 }
 
