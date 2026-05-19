@@ -113,15 +113,34 @@ function initializeSitemap() {
                                     window.location.pathname === "/booking"
                                 ) {
 
+                                    const mobileNumber =
+                                        sessionStorage.getItem(
+                                            "ff_mobile_number"
+                                        ) || "";
+
+                                    const cleanedPhone =
+                                        mobileNumber.replace(/\D/g, "");
+
                                     SalesforceInteractions.sendEvent({
 
                                         interaction: {
                                             name: "Sign In Successfully"
+                                        },
+
+                                        user: {
+
+                                            identities: {
+                                                phoneNumber: cleanedPhone
+                                            },
+
                                         }
 
                                     });
 
-                                    console.log("Sign In Successfully event sent");
+                                    // Remove after sending
+                                    sessionStorage.removeItem(
+                                        "ff_mobile_number"
+                                    );
                                 }
 
                             }, 3000);
@@ -271,6 +290,45 @@ function initializeSitemap() {
                 interaction: {
                     name: "View Signin Page",
                 },
+
+                listeners: [
+
+                    SalesforceInteractions.listener(
+                        "click",
+                        "button[aria-disabled='false']",
+                        () => {
+
+                            const buttonText =
+                                SalesforceInteractions.cashDom(
+                                    "button[aria-disabled='false']"
+                                ).text()?.trim();
+
+                            // Continue button clicked
+                            if (buttonText === "Continue") {
+
+                                const mobileNumber =
+                                    SalesforceInteractions.cashDom(
+                                        "input[name='mobile']"
+                                    ).val()?.trim() || "";
+
+                                // Validate 10 digit mobile
+                                if (/^\d{10}$/.test(mobileNumber)) {
+
+                                    // Store temporarily
+                                    sessionStorage.setItem(
+                                        "ff_mobile_number",
+                                        mobileNumber
+                                    );
+
+                                    console.log(
+                                        "Mobile stored:",
+                                        mobileNumber
+                                    );
+                                }
+                            }
+                        }
+                    ),
+                ]
             },
 
             {
