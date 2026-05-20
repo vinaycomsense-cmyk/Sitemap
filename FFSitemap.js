@@ -104,8 +104,6 @@ function initializeSitemap() {
                             buttonText === "Verify"
                         ) {
 
-                            console.log("Verify button clicked");
-
                             // Wait for redirect to /booking
                             setTimeout(() => {
 
@@ -271,8 +269,6 @@ function initializeSitemap() {
                                         }
                                     }
                                 });
-
-                                console.log("Pincode captured:", pincode);
                             }
                         }
                     ),
@@ -317,11 +313,6 @@ function initializeSitemap() {
                                     // Store temporarily
                                     sessionStorage.setItem(
                                         "ff_mobile_number",
-                                        mobileNumber
-                                    );
-
-                                    console.log(
-                                        "Mobile stored:",
                                         mobileNumber
                                     );
                                 }
@@ -513,8 +504,6 @@ function initializeSitemap() {
 
                             if (!isDisabled) {
 
-                                console.log("OTP Verify clicked");
-
                                 // Get mobile number
                                 const mobileNumber =
                                     SalesforceInteractions.cashDom(
@@ -574,10 +563,6 @@ function initializeSitemap() {
                                 }
 
                             });
-
-                            console.log(
-                                "Login Successfully event sent"
-                            );
 
                             sessionStorage.removeItem(
                                 "ff_login_success"
@@ -647,10 +632,6 @@ SalesforceInteractions.init({
         if (currentPath !== lastPath) {
 
             lastPath = currentPath;
-
-            console.log("Route changed → Reinitializing Sitemap");
-
-
             setTimeout(() => {
 
                 SalesforceInteractions.reinit();
